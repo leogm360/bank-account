@@ -5,7 +5,7 @@
   "author": "Leonardo Moraes",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@10.6.1",
   "engines": {
     "node": ">=v22"
   },
