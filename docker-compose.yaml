@@ -5,6 +5,7 @@ services:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_4LW_COMMANDS_WHITELIST=ruok
     networks:
       - bank-account-network
     healthcheck:
@@ -32,10 +33,28 @@ services:
       timeout: 5s
       retries: 5
 
+  mongodb:
+    image: mongo:8.0.5
+    ports:
+      - "27017:27017"
+    networks:
+      - bank-account-network
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mongosh 'mongodb://localhost:27017/test' --quiet --eval 'db.runCommand({ ping: 1 }).ok' | grep 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   zookeeper_data:
     driver: local
   kafka_data:
+    driver: local
+  mongodb_data:
     driver: local
 
 networks:
