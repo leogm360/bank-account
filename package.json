@@ -1,0 +1,16 @@
+{
+  "name": "bank-account",
+  "version": "0.0.1",
+  "description": "Bank account microsservices monorepo",
+  "author": "Leonardo Moraes",
+  "license": "MIT",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=v22"
+  },
+  "scripts": {
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  }
+}
