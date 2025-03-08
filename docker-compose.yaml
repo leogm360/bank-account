@@ -49,12 +49,29 @@ services:
       timeout: 5s
       retries: 5
 
+  mysql:
+    image: mysql:9.2.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bank_account
+    networks:
+      - bank-account-network
+    healthcheck:
+      test: mysqladmin ping -h localhost -u root -proot
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   zookeeper_data:
     driver: local
   kafka_data:
     driver: local
   mongodb_data:
+    driver: local
+  mysql_data:
     driver: local
 
 networks:
