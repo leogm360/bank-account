@@ -64,6 +64,42 @@ services:
       timeout: 5s
       retries: 5
 
+  account-cmd:
+    build:
+      context: ./apps/account-cmd/
+      dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=${CMD_NODE_ENV}
+        - PORT=${CMD_PORT}
+    ports:
+      - "${CMD_PORT}:${CMD_PORT}"
+    depends_on:
+      - kafka
+      - mongodb
+      - mysql
+    networks:
+      - bank-account-network
+    volumes:
+      - ./apps/account-cmd/src/:/app/src/
+
+  account-query:
+    build:
+      context: ./apps/account-query/
+      dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=${QUERY_NODE_ENV}
+        - PORT=${QUERY_PORT}
+    ports:
+      - "${QUERY_PORT}:${QUERY_PORT}"
+    depends_on:
+      - kafka
+      - mongodb
+      - mysql
+    networks:
+      - bank-account-network
+    volumes:
+      - ./apps/account-query/src/:/app/src/
+
 volumes:
   zookeeper_data:
     driver: local
@@ -72,6 +108,10 @@ volumes:
   mongodb_data:
     driver: local
   mysql_data:
+    driver: local
+  account-cmd:
+    driver: local
+  account-query:
     driver: local
 
 networks:

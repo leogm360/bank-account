@@ -1,7 +1,7 @@
 {
   "name": "bank-account",
-  "version": "0.0.1",
-  "description": "Bank account microsservices monorepo",
+  "version": "1.0.0",
+  "description": "Bank account microservices monorepo.",
   "author": "Leonardo Moraes",
   "license": "MIT",
   "private": true,
@@ -10,8 +10,7 @@
     "node": ">=v22"
   },
   "scripts": {
-    "dev": "nx serve",
-    "docker:up": "sudo docker compose up -d",
-    "docker:down": "sudo docker compose down"
+    "docker:dev:up": "sudo docker compose -f docker-compose.dev.yaml up -d",
+    "docker:dev:down": "sudo docker compose -f docker-compose.dev.yaml down"
   }
 }
