@@ -1,0 +1,15 @@
+node_modules/
+
+dist/
+
+test/
+
+.env*
+
+.gitignore
+
+README.md
+
+eslint*
+
+.prettierrc
